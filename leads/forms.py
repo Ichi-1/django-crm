@@ -1,8 +1,7 @@
-from curses import meta
 from django import forms
-from .models import Lead, Agent
 from django.contrib.auth import get_user_model
 from django.contrib.auth.forms import UserCreationForm, UsernameField
+from .models import Category, Lead, Agent
 
 User = get_user_model()
 
@@ -49,4 +48,11 @@ class LeadCategoryUpdateForm(forms.ModelForm):
         model = Lead
         fields = (
             'category',
+        )
+
+class CategoryModelForm(forms.ModelForm):
+    class Meta:
+        model = Category
+        fields = (
+            'name',
         )

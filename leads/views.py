@@ -1,16 +1,17 @@
 from django.core.mail import send_mail
 from django.contrib.auth.mixins import LoginRequiredMixin
+from agents.mixins import OrganisorLoginRequiredMixin
 from django.urls import reverse
 from django.views.generic import (
-    TemplateView, ListView, DetailView,
-    CreateView, UpdateView, DeleteView, FormView
+    CreateView, DetailView, DeleteView,
+    FormView, ListView, TemplateView, 
+    UpdateView,  
 )
 from .forms import (
-    LeadModelForm, CustomCreationForm,
-    AssignAgentForm, LeadCategoryUpdateForm
+    AssignAgentForm, CustomCreationForm, CategoryModelForm,
+    LeadModelForm, LeadCategoryUpdateForm
 )
 from .models import Category, Lead
-from agents.mixins import OrganisorLoginRequiredMixin
 
 
 class LandingPageView(TemplateView):
@@ -220,3 +221,11 @@ class LeadCategoryUpdateView(LoginRequiredMixin, UpdateView):
 
     def get_success_url(self):
         return reverse('leads:lead-detail', kwargs={"pk": self.get_object().id})
+
+
+class LeadCreateView(OrganisorLoginRequiredMixin, CreateView):
+    template_name = 'leads/category_create.html'
+    form_class = CategoryModelForm
+
+    def get_success_url(self):
+        return reverse('leads:lead-list')
