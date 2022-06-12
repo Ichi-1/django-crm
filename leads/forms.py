@@ -50,6 +50,7 @@ class LeadCategoryUpdateForm(forms.ModelForm):
             'category',
         )
 
+
 class CategoryModelForm(forms.ModelForm):
     class Meta:
         model = Category

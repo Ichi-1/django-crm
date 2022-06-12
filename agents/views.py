@@ -2,8 +2,8 @@ import random
 from django.core.mail import send_mail
 from django.urls import reverse
 from django.views.generic import (
-    DetailView,DeleteView, CreateView, 
-    ListView, UpdateView, 
+    DetailView, DeleteView, CreateView,
+    ListView, UpdateView
 )
 from leads.models import Agent
 from .forms import AgentModelForm

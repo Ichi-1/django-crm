@@ -4,8 +4,8 @@ from agents.mixins import OrganisorLoginRequiredMixin
 from django.urls import reverse
 from django.views.generic import (
     CreateView, DetailView, DeleteView,
-    FormView, ListView, TemplateView, 
-    UpdateView,  
+    FormView, ListView, TemplateView,
+    UpdateView,
 )
 from .forms import (
     AssignAgentForm, CustomCreationForm, CategoryModelForm,
@@ -168,7 +168,11 @@ class CategoryListView(LoginRequiredMixin, ListView):
             )
 
         context.update({
-            'unassigned_lead_count': queryset.filter(category__isnull=True).count()
+            'unassigned_lead_count': (
+                queryset
+                .filter(category__isnull=True)
+                .count()
+            )
         })
         return context
 
@@ -223,7 +227,7 @@ class LeadCategoryUpdateView(LoginRequiredMixin, UpdateView):
         return reverse('leads:lead-detail', kwargs={"pk": self.get_object().id})
 
 
-class LeadCreateView(OrganisorLoginRequiredMixin, CreateView):
+class LeadCategoryCreateView(OrganisorLoginRequiredMixin, CreateView):
     template_name = 'leads/category_create.html'
     form_class = CategoryModelForm
 
