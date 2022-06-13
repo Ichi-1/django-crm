@@ -5,7 +5,7 @@ from decouple import config
 # ! SECURITY WARNING: keep the secret key used in production secret!
 
 SECRET_KEY = config('SECRET_KEY')
-DEBUG = config('DEBUG')
+DEBUG = config('DEBUG', cast=bool)
 
 
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -120,17 +120,19 @@ if not DEBUG:
     CSRF_COOKIE_SECURE = True
     SECURE_BROWSER_XSS_FILTER = True
     SECURE_CONTENT_TYPE_NOSNIFF = True
-    SECURE_HSTS_SECONDS = 31536000 # 1 year
+    SECURE_HSTS_SECONDS = 31536000  # 1 year
     SECURE_HSTS_INCLUDE_SUBDOMAINS = True
     SECURE_HSTS_PRELOAD = True
     X_FRAME_OPTIONS = "DENY"
 
-    ALLOWED_HOSTS = ['*'] # TODO main domain
+    ALLOWED_HOSTS = ['*']  # TODO main domain
 
-    EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
-    EMAIL_HOST = config('EMAIL_HOST')
-    EMAIL_HOST_USER = config('EMAIL_HOST_NAME')
-    EMAIL_HOST_PASSWORD = config('EMAIL_HOST_PASSWORD')
-    EMAIL_USE_TSL = config('EMAIL_USE_TSL')
-    EMAIL_PORT = config('EMAIL_PORT')
-    DEFAULT_FROM_EMAIL = config('DEFAULT_FROM_EMAIL')
+
+    # TODO mailing serivce 
+    # EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+    # EMAIL_HOST = config('EMAIL_HOST')
+    # EMAIL_HOST_USER = config('EMAIL_HOST_NAME')
+    # EMAIL_HOST_PASSWORD = config('EMAIL_HOST_PASSWORD')
+    # EMAIL_USE_TSL = config('EMAIL_USE_TSL')
+    # EMAIL_PORT = config('EMAIL_PORT')
+    # DEFAULT_FROM_EMAIL = config('DEFAULT_FROM_EMAIL')

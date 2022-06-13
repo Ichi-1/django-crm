@@ -40,7 +40,7 @@
                             Email
                             </th>
                             <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                            Cell Phone Number
+                            Phone Number
                             </th>
                             <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                             Category
@@ -87,8 +87,11 @@
                             </tr>
 
                         {% empty %}
-
-                        <p>There are currently no leads</p>
+                            <p class="mb-3 ml-3 mt-3">
+                                There are currently no leads
+                            </p>
+                            
+                        
 
                         {% endfor %}
                     </tbody>
@@ -97,7 +100,7 @@
             </div>
             </div>
         </div>
-  
+
         {% if unassigned_leads.exists %}
             <div class="mt-5 flex flex-wrap -m-4">
                 <div class="p-4 w-full">
