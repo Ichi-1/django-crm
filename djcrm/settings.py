@@ -125,7 +125,7 @@ if not DEBUG:
     SECURE_HSTS_PRELOAD = True
     X_FRAME_OPTIONS = "DENY"
 
-    ALLOWED_HOSTS = ['https://mysterious-sea-05839.herokuapp.com/', '127.0.0.1']  # TODO main domain
+    ALLOWED_HOSTS = ['mysterious-sea-05839.herokuapp.com', '127.0.0.1']  # TODO main domain
 
 
     # TODO mailing serivce 
