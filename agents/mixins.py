@@ -9,3 +9,11 @@ class OrganisorLoginRequiredMixin(AccessMixin):
         if not request.user.is_authenticated or not request.user.is_organisor:
             return redirect("leads:lead-list")
         return super().dispatch(request, *args, **kwargs)
+
+
+class PreventSingUpMixin(AccessMixin):
+    
+    def dispatch(self, request, *args, **kwargs):
+        if request.user.is_authenticated:
+            return redirect('leads:lead-list')
+        return super().dispatch(request, *args, **kwargs)

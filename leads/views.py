@@ -1,6 +1,6 @@
 from django.core.mail import send_mail
 from django.contrib.auth.mixins import LoginRequiredMixin
-from agents.mixins import OrganisorLoginRequiredMixin
+from agents.mixins import OrganisorLoginRequiredMixin, PreventSingUpMixin
 from django.urls import reverse
 from django.views.generic import (
     CreateView, DetailView, DeleteView,
@@ -18,9 +18,10 @@ class LandingPageView(TemplateView):
     template_name = 'landing.html'
 
 
-class SignUpView(CreateView):
+class SignUpView(PreventSingUpMixin, CreateView):
     template_name = 'registration/sign_up.html'
     form_class = CustomCreationForm
+     
 
     def get_success_url(self):
         return reverse('login')
